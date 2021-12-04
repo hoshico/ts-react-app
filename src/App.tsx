@@ -2,13 +2,8 @@ import React, { useState } from 'react';
 import './App.css';
 import axios from 'axios';
 import { Todo } from './Todo';
+import { TodoType } from './types/todo';
 
-type TodoType = {
-  userId: number;
-  id: number;
-  title: string;
-  completed?: boolean;
-};
 
 export default function App() {
   const [todos, setTodos] = useState<Array<TodoType>>([]);
@@ -23,7 +18,11 @@ export default function App() {
     <div className="App">
       <button onClick={onClickFetchData}>データ取得</button>
       {todos.map((todo) => (
-        <Todo title={todo.title} userId={todo.userId} completed={todo.completed} />
+        <Todo 
+          key={todo.id}
+          title={todo.title}
+          userId={todo.userId} 
+          completed={todo.completed} />
       ))}
     </div>
   );
